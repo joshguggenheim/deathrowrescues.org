@@ -1,70 +1,37 @@
 import Image from "next/image";
+import Logo from "@/components/Logo";
 
-/*
- * Unsplash photos — all free-to-use pit bull / rescue dog images.
- * Using specific photo IDs for reliable, high-quality results.
- */
 const dogs = [
-  {
-    src: "https://images.unsplash.com/photo-1541599468348-e603c130c5f0?w=800&h=800&fit=crop&crop=faces",
-    alt: "Smiling pit bull with a happy expression",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?w=800&h=800&fit=crop&crop=faces",
-    alt: "Gentle pit bull looking at camera",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&h=800&fit=crop&crop=faces",
-    alt: "Playful dog in natural light",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?w=800&h=800&fit=crop&crop=faces",
-    alt: "Golden retriever mix with soulful eyes",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&h=800&fit=crop&crop=faces",
-    alt: "Pit bull relaxing outdoors",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=800&h=800&fit=crop&crop=faces",
-    alt: "Adorable bully breed puppy",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1477884213360-7e9d7dcc8f9b?w=800&h=800&fit=crop&crop=faces",
-    alt: "Sweet dog waiting for a home",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1558929996-da64ba858215?w=800&h=800&fit=crop&crop=faces",
-    alt: "Happy rescue dog smiling",
-  },
+  { src: "/dogs/dog-01.jpg", name: "Buddy" },
+  { src: "/dogs/dog-02.jpg", name: "Luna" },
+  { src: "/dogs/dog-03.jpg", name: "Duke" },
+  { src: "/dogs/dog-04.jpg", name: "Daisy" },
+  { src: "/dogs/dog-05.jpg", name: "Rocky" },
+  { src: "/dogs/dog-06.jpg", name: "Stella" },
+  { src: "/dogs/dog-07.jpg", name: "Bear" },
+  { src: "/dogs/dog-08.jpg", name: "Scout" },
+  { src: "/dogs/dog-09.jpg", name: "Mia" },
+  { src: "/dogs/dog-10.jpg", name: "Coco" },
+  { src: "/dogs/dog-11.jpg", name: "Charlie" },
+  { src: "/dogs/dog-12.jpg", name: "Zeus" },
 ];
-
-/* Hero dog — big beautiful pit bull */
-const heroDog = {
-  src: "https://images.unsplash.com/photo-1529429617124-95b109e86bb8?w=1600&h=900&fit=crop&crop=faces",
-  alt: "Beautiful pit bull looking into the camera",
-};
 
 /* ───────────────────── HERO ───────────────────── */
 function Hero() {
   return (
-    <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden">
-      {/* Background image */}
+    <section className="relative flex min-h-[92vh] flex-col items-center justify-center overflow-hidden">
       <Image
-        src={heroDog.src}
-        alt={heroDog.alt}
+        src="/dogs/hero.jpg"
+        alt="Rescue dog"
         fill
         priority
-        className="object-cover object-center brightness-[0.3]"
+        className="object-cover object-center brightness-[0.2]"
       />
 
-      {/* Content */}
       <div className="relative z-10 px-6 text-center">
-        <p className="text-sm font-bold uppercase tracking-[0.4em] text-gold">
-          Death Row Rescues
-        </p>
+        <Logo />
 
-        <h1 className="mt-6 max-w-3xl text-4xl font-black uppercase leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="mt-8 max-w-3xl text-4xl font-black uppercase leading-tight tracking-tight sm:text-6xl lg:text-7xl">
           Every Dog Deserves{" "}
           <span className="text-gold">a Second Chance</span>
         </h1>
@@ -87,21 +54,19 @@ function Hero() {
 /* ──────────────── DOG PHOTO STRIP ─────────────── */
 function DogStrip() {
   return (
-    <section className="bg-white/[0.02] py-1">
-      <div className="grid grid-cols-4 sm:grid-cols-8">
-        {dogs.map((dog, i) => (
-          <div key={i} className="relative aspect-square overflow-hidden">
-            <Image
-              src={dog.src}
-              alt={dog.alt}
-              fill
-              className="object-cover transition duration-500 hover:scale-105"
-              sizes="(max-width: 640px) 25vw, 12.5vw"
-            />
-          </div>
-        ))}
-      </div>
-    </section>
+    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-12">
+      {dogs.map((dog, i) => (
+        <div key={i} className="relative aspect-square overflow-hidden">
+          <Image
+            src={dog.src}
+            alt={`${dog.name} — rescue dog`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 25vw, (max-width: 768px) 16.6vw, 8.3vw"
+          />
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -122,8 +87,8 @@ function Problem() {
         <p className="mx-auto mt-10 max-w-2xl text-base leading-relaxed text-white/50">
           &ldquo;Death row&rdquo; isn&rsquo;t a figure of speech. In
           overcrowded shelters, healthy dogs are put down every day — not
-          because they&rsquo;re dangerous, but because there&rsquo;s no room.
-          Pit bulls and bully breeds are the first to go.
+          because anything is wrong with them, but because there&rsquo;s no
+          room. Good dogs run out of time before they find a home.
         </p>
       </div>
     </section>
@@ -135,15 +100,15 @@ function Mission() {
   const pillars = [
     {
       title: "Spotlight",
-      desc: "Social media and cultural awareness campaigns that make at-risk dogs impossible to ignore.",
+      desc: "We use social media and culture to put a spotlight on dogs running out of time — making them impossible to ignore.",
     },
     {
       title: "Fund",
-      desc: "Covering vet care, food, and temporary shelter so rescues can say yes to more dogs.",
+      desc: "We cover vet care, food, and temporary shelter so rescues can say yes to more dogs instead of turning them away.",
     },
     {
       title: "Connect",
-      desc: "Matching dogs with the right families and foster networks to get them home.",
+      desc: "We match dogs with the right families and foster networks — getting them out of the shelter and into a home.",
     },
   ];
 
@@ -176,8 +141,6 @@ function Mission() {
 
 /* ──────────────── FEATURED DOGS ───────────────── */
 function FeaturedDogs() {
-  const featured = dogs.slice(0, 6);
-
   return (
     <section className="border-t border-white/10 px-6 py-24">
       <div className="mx-auto max-w-5xl text-center">
@@ -188,25 +151,28 @@ function FeaturedDogs() {
           They&rsquo;re Not Dangerous. They&rsquo;re Overlooked.
         </p>
         <p className="mx-auto mt-5 max-w-xl text-base text-white/50 leading-relaxed">
-          Pit bulls and bully breeds are the most euthanized dogs in America.
-          They wait the longest, get overlooked the most, and run out of time
-          the fastest.
+          Shelters across the country are overcrowded. Good dogs — loyal,
+          loving, and full of life — are euthanized every day simply because no
+          one showed up in time.
         </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {featured.map((dog, i) => (
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {dogs.map((dog, i) => (
             <div
               key={i}
               className="group relative aspect-square overflow-hidden rounded-lg"
             >
               <Image
                 src={dog.src}
-                alt={dog.alt}
+                alt={`${dog.name} — rescue dog`}
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, 33vw"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <p className="absolute bottom-3 left-3 text-sm font-bold uppercase tracking-wider text-white/90">
+                {dog.name}
+              </p>
             </div>
           ))}
         </div>
